@@ -1,0 +1,18 @@
+name: Test formula
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  install:
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Homebrew/actions/setup-homebrew@master
+      - name: Register this checkout as the tap
+        run: brew tap marineverse/tap "$GITHUB_WORKSPACE"
+      - run: brew install --build-from-source marineverse/tap/marineverse
+      - run: brew test marineverse/tap/marineverse
+      - run: brew audit --strict marineverse/tap/marineverse

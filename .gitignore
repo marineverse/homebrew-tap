@@ -1,0 +1,12 @@
+.DS_Store
+*.log
+*.tgz
+.env
+.env.*
+.npmrc
+node_modules/
+docs/ai_plans/
+.agents/
+.codex/
+.claude/
+tmp/
