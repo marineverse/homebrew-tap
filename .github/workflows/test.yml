@@ -10,7 +10,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - uses: Homebrew/actions/setup-homebrew@master
+      - uses: Homebrew/actions/setup-homebrew@e99025eb970cfa124b8284a35463d87426917478
       - name: Register this checkout as the tap
         run: brew tap marineverse/tap "$GITHUB_WORKSPACE"
       - run: brew install --build-from-source marineverse/tap/marineverse
