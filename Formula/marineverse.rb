@@ -9,14 +9,16 @@ class Marineverse < Formula
 
   def install
     system "npm", "install", *std_npm_args
-    bin.env_script_all_files libexec/"bin", PATH: "#{Formula["node"].opt_bin}:$PATH"
+    (bin/"marineverse").write_env_script libexec/"bin/marineverse",
+                                       PATH: "#{Formula["node"].opt_bin}:$PATH"
   end
 
   test do
     ENV["MARINEVERSE_CONFIG_DIR"] = testpath/"settings"
     assert_match version.to_s, shell_output("#{bin}/marineverse --version")
     assert_match "Usage: marineverse", shell_output("#{bin}/marineverse help")
-    result = JSON.parse(shell_output("#{bin}/marineverse --env production --json globe boats view-3d test-boat --no-browser"))
+    command = "#{bin}/marineverse --env production --json globe boats view-3d test-boat --no-browser"
+    result = JSON.parse(shell_output(command))
     assert_equal "https://www.marineverse.com/globe/boats-profiles/test-boat/3d", result.fetch("data").fetch("url")
     assert_equal false, result.fetch("data").fetch("browser_opened")
     # Load the native credential binding without reading or writing credentials.
