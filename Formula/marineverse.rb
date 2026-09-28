@@ -1,8 +1,8 @@
 class Marineverse < Formula
   desc "Sailing races, boats, and MarineVerse account access from your terminal"
   homepage "https://github.com/marineverse/marineverse-cli"
-  url "https://registry.npmjs.org/@marineverse/cli/-/cli-0.1.1.tgz"
-  sha256 "36e4cb46a6bedb9e1d62dea4eceeb84e36259e3643264246f346cefec0e700bc"
+  url "https://registry.npmjs.org/@marineverse/cli/-/cli-0.1.2.tgz"
+  sha256 "5c26d96365eba594014efc04e9e3d2135fc045ee36bb4e0c4ef2c56f32c2cdcc"
   license "Apache-2.0"
 
   depends_on "node"
